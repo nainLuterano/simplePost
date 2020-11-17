@@ -8,10 +8,11 @@ define('PASS','');//senha do banco de dados
 define('HAST','9BFD9E9A21FAC2ADC6A57E93875DAEA8');
 
 try {
+
     $conexao = new PDO('mysql:dbname='.BANCO.';host='.IP,DB,PASS);
     $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $conexao->exec("create table  if not exists categoria(
-        id bigint ,
+        id bigint AUTO_INCREMENT ,
         nome varchar(25),
         PRIMARY KEY(id)
     )");
@@ -19,7 +20,7 @@ try {
     
     
     $conexao->exec("create table if not exists postagem(
-        id bigint  ,
+        id bigint AUTO_INCREMENT ,
         categoria_id bigint,
         titulo varchar(100) not null,
         conteudo text not null,
@@ -29,7 +30,7 @@ try {
 
 
     $conexao->exec("create table if not exists usuario(
-        id bigint  auto_increment,
+        id bigint  AUTO_INCREMENT,
         nome varchar(100) not null,
         nick varchar(100) not null,
         password varchar(255) not null,
